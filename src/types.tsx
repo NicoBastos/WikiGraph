@@ -1,15 +1,10 @@
-type Article = {
-  id: number;
+type NodeType = {
+  id: string;
 };
 
-type Link = {
-  source: number; // refers to the id of the source Article
-  target: number; // refers to the id of the target Article
-};
-
-type Graph = {
-  nodes: Article[];
-  links: Link[];
+type LinkType = {
+  source: string; // refers to the id of the source Article
+  target: string; // refers to the id of the target Article
 };
 
 type Result = {
