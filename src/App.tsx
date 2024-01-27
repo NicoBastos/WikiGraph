@@ -1,6 +1,6 @@
 import SearchBox from "./components/SearchBox/SearchBox";
-import useWikipediaData from "./hooks/useWikipediaData";
-import GraphCanvas from "./components/GraphCanvas/GraphCanvas";
+import useWikipediaData from "./components/hooks/useWikipediaData";
+import GraphCanvas from "./components/MainContent/GraphCanvas";
 import ArticleCard from "./components/ArticleCard/ArticleCard";
 
 const App = () => {
