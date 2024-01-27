@@ -1,16 +1,11 @@
 import { useEffect } from "react";
 import ForceGraph3D, { GraphData } from "react-force-graph-3d";
-import useGraph from "../../hooks/useGraph";
+import useGraph from "../hooks/useGraph";
+import ArticleCard from "../ArticleCard/ArticleCard";
 
 const MainContent = () => {
   const initialGraphData: GraphData<NodeType, LinkType> = {
-    nodes: [
-      { id: randomUUID() },
-      { id: "1" },
-      { id: "2" },
-      { id: "3" },
-      { id: "4" },
-    ],
+    nodes: [{ id: "0" }, { id: "1" }, { id: "2" }, { id: "3" }, { id: "4" }],
     links: [
       { source: "0", target: "1" },
       { source: "1", target: "2" },
