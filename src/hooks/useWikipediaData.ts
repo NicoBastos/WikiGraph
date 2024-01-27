@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 
-const useWikipediaData = (initialSearchTerm = "Wikipedia") => {
-  const [searchTerm, setSearchTerm] = useState<string>(initialSearchTerm);
-  const [articleContent, setArticleContent] = useState<any>(null);
+const useWikipediaData = () => {
+  const [searchTerm, setSearchTerm] = useState<string>("Dollar");
+  const [articleContent, setArticleContent] = useState<string>("");
   const [searching, setSearching] = useState<Boolean>(false);
   const didMount = useRef(false);
 
@@ -11,6 +11,7 @@ const useWikipediaData = (initialSearchTerm = "Wikipedia") => {
       fetchWikipediaData(searchTerm)
         .then((data: { extract: string }) => {
           if (data) {
+            console.log(data?.extract);
             setArticleContent(data?.extract);
           }
         })
@@ -24,6 +25,7 @@ const useWikipediaData = (initialSearchTerm = "Wikipedia") => {
 
   async function fetchWikipediaData(searchTerm: string) {
     if (!searchTerm) return;
+
     const params = new URLSearchParams({
       searchTerm: searchTerm,
     });
@@ -49,7 +51,14 @@ const useWikipediaData = (initialSearchTerm = "Wikipedia") => {
     setSearching((prev) => !prev);
   };
 
-  return { searchTerm, setSearchTerm, articleContent, handleSearchToggle };
+  return {
+    searchTerm,
+    setSearchTerm,
+    articleContent,
+    handleSearchToggle,
+    searching,
+    fetchWikipediaData,
+  };
 };
 
 export default useWikipediaData;

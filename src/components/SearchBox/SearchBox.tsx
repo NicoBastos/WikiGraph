@@ -2,12 +2,13 @@ import { Input } from "@/components/ui/input";
 
 const SearchBox = ({ searchTerm, setSearchTerm, handleKeyDown }: any) => {
   return (
-    <div style={{ maxWidth: "300px", margin: "auto" }}>
+    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-96">
       <Input
         placeholder="Search..."
         value={searchTerm}
         onChange={(event) => setSearchTerm(event.target.value)}
         onKeyDown={handleKeyDown}
+        className="w-full"
       />
     </div>
   );

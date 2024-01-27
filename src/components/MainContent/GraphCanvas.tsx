@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import ForceGraph3D, { GraphData } from "react-force-graph-3d";
-import useGraph from "../hooks/useGraph";
+import useGraph from "../../hooks/useGraph";
 import ArticleCard from "../ArticleCard/ArticleCard";
 
 const MainContent = () => {
