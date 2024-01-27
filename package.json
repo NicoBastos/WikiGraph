@@ -10,7 +10,8 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "pnpm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "publish": "pnpm run predeploy && pnpm run deploy"
   },
   "dependencies": {
     "@extractus/article-extractor": "^8.0.5",
