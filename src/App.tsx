@@ -25,7 +25,6 @@ const App = () => {
         handleSearchToggle={handleSearchToggle}
         fetchWikipediaData={fetchWikipediaData}
         setSearchTerm={setSearchTerm}
-        handleSearchToggle={handleSearchToggle}
       />
       <div className="absolute top-0 right-0 h-full w-1/3 p-8">
         <ArticleCard searchTerm={searchTerm} articleContent={articleContent} />
