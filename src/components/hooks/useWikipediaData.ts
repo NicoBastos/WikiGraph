@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-const useWikipediaData = (initialSearchTerm = "") => {
+const useWikipediaData = (initialSearchTerm = "Wikipedia") => {
   const [searchTerm, setSearchTerm] = useState<string>(initialSearchTerm);
   const [articleContent, setArticleContent] = useState<any>(null);
   const [searching, setSearching] = useState<Boolean>(false);
@@ -9,7 +9,7 @@ const useWikipediaData = (initialSearchTerm = "") => {
   useEffect(() => {
     if (didMount.current) {
       fetchWikipediaData(searchTerm)
-        .then((data) => {
+        .then((data: { extract: string }) => {
           if (data) {
             setArticleContent(data?.extract);
           }
@@ -24,21 +24,21 @@ const useWikipediaData = (initialSearchTerm = "") => {
 
   async function fetchWikipediaData(searchTerm: string) {
     if (!searchTerm) return;
-
-    const apiUrl = `https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&titles=${searchTerm}&prop=extracts|images|links&explaintext=&pllimit=max&imlimit=5`;
+    const params = new URLSearchParams({
+      searchTerm: searchTerm,
+    });
+    const url = `http://localhost:3000/getWikiArticle?${params.toString()}`;
 
     try {
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-
-      const pageId = Object.keys(data.query.pages)[0];
-      const page = data.query.pages[pageId];
-
-      return {
-        extract: page.extract,
-        images: page.images?.map((image: any) => image.title),
-        links: page.links?.map((link: any) => link.title),
-      };
+      return fetch(url, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => data)
+        .catch((error) => console.error("Error:", error));
     } catch (error) {
       console.error("Error fetching Wikipedia data:", error);
       return null;

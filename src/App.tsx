@@ -1,65 +1,31 @@
-import ArticleCard from "./components/ArticleCard/ArticleCard";
-import ForceGraph3D, { GraphData } from "react-force-graph-3d";
-import { useEffect } from "react";
 import SearchBox from "./components/SearchBox/SearchBox";
 import useWikipediaData from "./components/hooks/useWikipediaData";
-import useGraph from "./components/hooks/useGraph";
+import MainContent from "./components/MainContent/MainContent";
+import ArticleCard from "./components/ArticleCard/ArticleCard";
 
-function App() {
-  const initialGraphData: GraphData<NodeType, LinkType> = {
-    nodes: [{ id: "0" }, { id: "1" }, { id: "2" }, { id: "3" }, { id: "4" }],
-    links: [
-      { source: "0", target: "1" },
-      { source: "1", target: "2" },
-      { source: "2", target: "3" },
-      { source: "3", target: "4" },
-      { source: "4", target: "0" },
-      { source: "1", target: "3" },
-    ],
-  };
-
-  const { data, addNode, removeNode } = useGraph(initialGraphData);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      addNode();
-    }, 10000);
-
-    return () => clearInterval(intervalId);
-  }, [addNode]);
-
-  const handleClick = (node: NodeType) => {
-    removeNode(node.id);
-  };
-
+const App = () => {
   const { searchTerm, setSearchTerm, articleContent, handleSearchToggle } =
     useWikipediaData();
-
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearchToggle();
+    }
+  };
   return (
-    <main className="flex h-screen bg-gray-100">
-      <div className="flex-1 p-4">
-        <ForceGraph3D
-          enableNodeDrag={false}
-          onNodeClick={handleClick}
-          graphData={data}
+    <main className="relative h-screen w-screen">
+      <MainContent />
+      <div className="absolute top-0 left-0 p-4">
+        <SearchBox
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          handleKeyDown={handleKeyDown}
         />
-        <SearchBox />
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
-          className="w-full p-2 border border-gray-300 rounded shadow-sm text-black"
-        />
-        <button
-          onClick={handleSearchToggle}
-          className="px-4 py-2 mt-2 text-white bg-blue-500 rounded hover:bg-blue-600"
-        >
-          Search
-        </button>
       </div>
-      <ArticleCard articleContent={articleContent} />
+      <div className="absolute top-0 right-0 p-4 h-full w-1/3 flex flex-col justify-center">
+        <ArticleCard articleContent={articleContent} />
+      </div>
     </main>
   );
-}
+};
 
 export default App;
