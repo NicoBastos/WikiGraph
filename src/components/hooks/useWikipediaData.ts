@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 const useWikipediaData = () => {
-  const [searchTerm, setSearchTerm] = useState<string>("Dollar");
+  const [searchTerm, setSearchTerm] = useState<string>("Wikipedia");
   const [articleContent, setArticleContent] = useState<string>("");
   const [searching, setSearching] = useState<Boolean>(false);
   const didMount = useRef(false);
