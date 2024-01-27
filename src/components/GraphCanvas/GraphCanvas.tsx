@@ -73,8 +73,10 @@ const GraphCanvas = ({
     fetchAndAddNodes("0", searchTerm);
   }, [searching]);
   const handleClick = (node: NodeType) => {
+    console.log("must be here");
     // removeNode(node.id);
     setSearchTerm(node.title);
+    setRequestedTerms(new Set([]));
     handleSearchToggle();
   };
   return (

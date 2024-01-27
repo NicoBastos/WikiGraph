@@ -11,7 +11,6 @@ const useWikipediaData = () => {
       fetchWikipediaData(searchTerm)
         .then((data: { extract: string }) => {
           if (data) {
-            console.log(data?.extract);
             setArticleContent(data?.extract);
           }
         })
@@ -48,6 +47,7 @@ const useWikipediaData = () => {
   }
 
   const handleSearchToggle = () => {
+    console.log(searching);
     setSearching((prev) => !prev);
   };
 

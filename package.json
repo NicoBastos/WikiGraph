@@ -3,12 +3,14 @@
   "private": true,
   "version": "0.2.1",
   "type": "module",
-  "homepage": "https://<NicoBastos>.github.io/<repository-name>",
+  "homepage": "https://<NicoBastos>.github.io/<WikiGraph>",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "pnpm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@extractus/article-extractor": "^8.0.5",

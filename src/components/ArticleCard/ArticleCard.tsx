@@ -2,7 +2,6 @@ import { Card } from "../ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const ArticleCard = ({ articleContent, searchTerm }: any) => {
-  console.log("searchTerm: ", searchTerm, " articleContent: ", articleContent);
   const skeletonLoader = (
     <>
       <div className="space-y-4">
