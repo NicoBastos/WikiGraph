@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 const useWikipediaData = () => {
-  const [searchTerm, setSearchTerm] = useState<string>("Wikipedia");
+  const [searchTerm, setSearchTerm] = useState<string>("Universe");
   const [articleContent, setArticleContent] = useState<string>("");
   const [searching, setSearching] = useState<Boolean>(false);
   const didMount = useRef(false);
@@ -28,7 +28,7 @@ const useWikipediaData = () => {
     const params = new URLSearchParams({
       searchTerm: searchTerm,
     });
-    const url = `http://localhost:3000/getWikiArticle?${params.toString()}`;
+    const url = `https://wikigraph-server-8042906eb85c.herokuapp.com/getWikiArticle?${params.toString()}`;
 
     try {
       return fetch(url, {
@@ -58,6 +58,7 @@ const useWikipediaData = () => {
     handleSearchToggle,
     searching,
     fetchWikipediaData,
+    didMount,
   };
 };
 

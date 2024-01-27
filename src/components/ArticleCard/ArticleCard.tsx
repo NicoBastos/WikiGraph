@@ -1,7 +1,7 @@
 import { Card } from "../ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
-const ArticleCard = ({ articleContent, searchTerm }: any) => {
+const ArticleCard = ({ articleContent, searchTerm, didMount }: any) => {
   const skeletonLoader = (
     <>
       <div className="space-y-4">
@@ -36,6 +36,7 @@ const ArticleCard = ({ articleContent, searchTerm }: any) => {
       </div>
     </>
   );
+  console.log("bool:", articleContent || didMount.current);
   return (
     <Card className="h-full dark">
       <div className="overflow-y-auto p-4 h-full">

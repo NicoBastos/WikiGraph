@@ -11,6 +11,7 @@ const App = () => {
     handleSearchToggle,
     searching,
     fetchWikipediaData,
+    didMount,
   } = useWikipediaData();
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
@@ -27,7 +28,11 @@ const App = () => {
         setSearchTerm={setSearchTerm}
       />
       <div className="absolute top-0 right-0 h-full w-1/3 p-8">
-        <ArticleCard searchTerm={searchTerm} articleContent={articleContent} />
+        <ArticleCard
+          searchTerm={searchTerm}
+          articleContent={articleContent}
+          didMount={didMount}
+        />
       </div>
       <div className="absolute top-4 left-1/2 transform -translate-x-1/2">
         <SearchBox
