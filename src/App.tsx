@@ -27,14 +27,14 @@ const App = () => {
         fetchWikipediaData={fetchWikipediaData}
         setSearchTerm={setSearchTerm}
       />
-      <div className="absolute top-0 right-0 h-full w-1/3 p-8">
+      <div className="absolute bottom-0 right-0 h-1/2 w-full md:w-1/3 p-4 md:p-8">
         <ArticleCard
           searchTerm={searchTerm}
           articleContent={articleContent}
           didMount={didMount}
         />
       </div>
-      <div className="absolute top-4 left-1/2 transform -translate-x-1/2">
+      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-11/12 md:w-96">
         <SearchBox
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}

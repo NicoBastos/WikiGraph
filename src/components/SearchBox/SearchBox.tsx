@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 
 const SearchBox = ({ searchTerm, setSearchTerm, handleKeyDown }: any) => {
   return (
-    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-96">
+    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-11/12 sm:w-96">
       <Input
         placeholder="Search any Wikipedia article... (press enter)"
         value={searchTerm}

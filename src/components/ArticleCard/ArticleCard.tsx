@@ -1,7 +1,7 @@
 import { Card } from "../ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
-const ArticleCard = ({ articleContent, searchTerm, didMount }: any) => {
+const ArticleCard = ({ articleContent, didMount }: any) => {
   const skeletonLoader = (
     <>
       <div className="space-y-4">
@@ -42,9 +42,9 @@ const ArticleCard = ({ articleContent, searchTerm, didMount }: any) => {
       <div className="overflow-y-auto p-4 h-full">
         {articleContent ? (
           <>
-            <h1>{searchTerm}</h1>
+            {/* <h1 className="text-lg md:text-xl">{searchTerm}</h1> */}
             <div
-              className="text-lg leading-relaxed mb-4 text-white"
+              className="text-base md:text-lg leading-relaxed mb-4 text-white"
               dangerouslySetInnerHTML={{ __html: articleContent }}
             />
           </>

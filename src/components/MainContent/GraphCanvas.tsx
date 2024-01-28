@@ -21,10 +21,11 @@ const GraphCanvas = ({
   const fetchAndAddNodes = async (
     initialNodeId: string,
     initialTerm: string,
-    maxNodes: number = 500
+    maxNodes: number = 1000
   ) => {
     let queue = [{ nodeId: initialNodeId, term: initialTerm }];
     let localCount = 0;
+    let titleToNodeIdMap = { [initialTerm]: initialNodeId }; // Map titles to node IDs
 
     while (queue.length > 0 && localCount < maxNodes) {
       const { nodeId, term } = queue.shift() as {
@@ -36,29 +37,33 @@ const GraphCanvas = ({
         let linkTitles = await fetchWikipediaData(term);
         if (linkTitles.links) linkTitles = linkTitles.links;
 
-        const newNodes: NodeType[] = [];
+        const newNodes = [];
         const newLinks = [];
 
         for (let title of linkTitles) {
           if (!requestedTerms.has(title) && localCount < maxNodes) {
-            const newNodeId = uuidv4();
-            newNodes.push({ id: newNodeId, title });
-            newLinks.push({ source: nodeId, target: newNodeId });
-            queue.push({ nodeId: newNodeId, term: title });
-            localCount++;
+            let targetNodeId;
+
+            if (titleToNodeIdMap[title]) {
+              // Node already exists, get its ID
+              targetNodeId = titleToNodeIdMap[title];
+            } else {
+              // Create new node
+              targetNodeId = uuidv4();
+              newNodes.push({ id: targetNodeId, title });
+              titleToNodeIdMap[title] = targetNodeId; // Update map
+              queue.push({ nodeId: targetNodeId, term: title });
+              localCount++;
+            }
+
+            newLinks.push({ source: nodeId, target: targetNodeId });
           }
         }
 
-        setRequestedTerms((prevTerms) => {
-          const newTerms = new Set(prevTerms);
-          newNodes.forEach((node) => {
-            if (node) {
-              newTerms.add(node.title);
-            }
-          });
-          return newTerms;
-        });
-        if (newNodes != null) {
+        setRequestedTerms(
+          (prevTerms) => new Set([...prevTerms, ...linkTitles])
+        );
+        if (newNodes.length > 0) {
           addMultipleNodes(newNodes, newLinks);
         }
       } catch (error) {
@@ -66,7 +71,6 @@ const GraphCanvas = ({
       }
     }
   };
-
   useEffect(() => {
     console.log("Graphcanvas useeffect!");
     clearGraph();
