@@ -14,12 +14,9 @@
     "publish": "pnpm run predeploy && pnpm run deploy"
   },
   "dependencies": {
-    "@extractus/article-extractor": "^8.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
-    "graphology": "^0.25.4",
-    "lucide-react": "^0.244.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-force-graph-3d": "^1.24.1",

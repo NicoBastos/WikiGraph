@@ -1,8 +1,11 @@
 import SearchBox from "./components/SearchBox/SearchBox";
 import useWikipediaData from "./components/hooks/useWikipediaData";
-import GraphCanvas from "./components/MainContent/GraphCanvas";
+// import GraphCanvas from "./components/MainContent/GraphCanvas";
 import ArticleCard from "./components/ArticleCard/ArticleCard";
-
+import React from "react";
+const GraphCanvas = React.lazy(
+  () => import("./components/MainContent/GraphCanvas")
+);
 const App = () => {
   const {
     searchTerm,
