@@ -28,10 +28,10 @@ const useWikipediaData = () => {
     const params = new URLSearchParams({
       searchTerm: searchTerm,
     });
-    const url = `https://wikigraph-server-8042906eb85c.herokuapp.com/getWikiArticle?${params.toString()}`;
-
+    const prod_url = `https://wikigraph-server-8042906eb85c.herokuapp.com/getWikiArticle?${params.toString()}`;
+    // const dev_url = `https://localhost:3000/getWikiArticle?${params.toString()}`;
     try {
-      return fetch(url, {
+      return fetch(prod_url, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -52,10 +52,10 @@ const useWikipediaData = () => {
     const params = new URLSearchParams({
       searchTerm: searchTerm,
     });
-    const url = `https://wikigraph-server-8042906eb85c.herokuapp.com/getWikiArticle?${params.toString()}`;
-
+    const prod_url = `https://wikigraph-server-8042906eb85c.herokuapp.com/getWikiArticle?${params.toString()}`;
+    // const dev_url = `https://localhost:3000/getWikiArticle/links?${params.toString()}`;
     try {
-      return fetch(url, {
+      return fetch(prod_url, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -81,6 +81,7 @@ const useWikipediaData = () => {
     handleSearchToggle,
     searching,
     fetchWikipediaData,
+    fetchWikipediaLinks,
     didMount,
   };
 };

@@ -1,6 +1,7 @@
 type NodeType = {
   id: string;
   title: string;
+  group: string;
 };
 
 type LinkType = {
