@@ -12,7 +12,7 @@ const useGraph = (
   const fetchAndAddNodes = async (
     initialNodeId: string,
     initialTerm: string,
-    maxNodes: number = 750
+    maxNodes: number = 3000
   ) => {
     let queue = [{ nodeId: initialNodeId, term: initialTerm }];
     let localCount = 0;
